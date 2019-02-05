@@ -13,9 +13,8 @@ services:
         LDAP_BIND_PSWD: ${LDAP_BIND_PSWD:-''}
     container_name: sonarqube_server
     ports:
-      - "9000:9000"
-#      - "9000:80"
-      - "9092:9092"
+      - 9000:9000
+      - 9092:9092
     environment:
       SONARQUBE_JDBC_USERNAME: sonar
       SONARQUBE_JDBC_PASSWORD: sonar
@@ -27,6 +26,7 @@ services:
       - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
     links:
       - db
+      
   db:
     restart: always
     image: postgres:10.5-alpine
